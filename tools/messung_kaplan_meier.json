@@ -1,0 +1,969 @@
+{
+ "meta": {
+  "runs": 1000,
+  "cover_runs": 1000,
+  "median_true": 4.0,
+  "sigma": 0.9,
+  "mean_true": 5.99721,
+  "q90_true": 12.675751
+ },
+ "v1": [
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 100,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.19376,
+    "se": 0.001252,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.737631,
+    "se": 0.013164,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 4.518988,
+    "se": 0.012859,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.430556,
+    "se": 0.01206,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.413247,
+    "se": 0.012384,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 4.031146,
+    "se": 0.015619,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.19556,
+    "se": 0.000737,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.730943,
+    "se": 0.00788,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 4.528759,
+    "se": 0.007888,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.427401,
+    "se": 0.006993,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.412176,
+    "se": 0.007289,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.996129,
+    "se": 0.008659,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 1000,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.194651,
+    "se": 0.000394,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.738867,
+    "se": 0.004182,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 4.530521,
+    "se": 0.004217,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.445422,
+    "se": 0.003864,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.417009,
+    "se": 0.004072,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.997017,
+    "se": 0.004834,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  }
+ ],
+ "cells": [
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.19556,
+    "se": 0.000737,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.730943,
+    "se": 0.00788,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 4.528759,
+    "se": 0.007888,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.427401,
+    "se": 0.006993,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.412176,
+    "se": 0.007289,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.996129,
+    "se": 0.008659,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 8,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.556403,
+    "se": 0.000943,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 2.798581,
+    "se": 0.003476,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 2.603846,
+    "se": 0.004021,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 2.392706,
+    "se": 0.004565,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 2.29928,
+    "se": 0.005341,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.999659,
+    "se": 0.010429,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 4,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.77555,
+    "se": 0.000771,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 1.736784,
+    "se": 0.001962,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.684821,
+    "se": 0.003081,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.616174,
+    "se": 0.002982,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.580304,
+    "se": 0.00433,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.609084,
+    "se": 0.010049,
+    "defined": 446,
+    "of": 1000
+   },
+   "undef_km": 0.554
+  },
+  {
+   "kind": "Feste Frist je Container (Typ I)",
+   "length": 30,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.012547,
+    "se": 0.000198,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 5.8296,
+    "se": 0.010575,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 5.52252,
+    "se": 0.009441,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.987505,
+    "se": 0.008231,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.937508,
+    "se": 0.008065,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.987505,
+    "se": 0.008231,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Feste Frist je Container (Typ I)",
+   "length": 8,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.220847,
+    "se": 0.000809,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.451609,
+    "se": 0.004785,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 3.445958,
+    "se": 0.00378,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.987505,
+    "se": 0.008231,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.102844,
+    "se": 0.005583,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.987505,
+    "se": 0.008231,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Feste Frist je Container (Typ I)",
+   "length": 4,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.49948,
+    "se": 0.000909,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 3.102215,
+    "se": 0.002011,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 2.206284,
+    "se": 0.002382,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.888921,
+    "se": 0.004705,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 2.17103,
+    "se": 0.003873,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.793916,
+    "se": 0.006313,
+    "defined": 539,
+    "of": 1000
+   },
+   "undef_km": 0.461
+  }
+ ],
+ "defined": [
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 4,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.77555,
+    "se": 0.000771,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 1.736784,
+    "se": 0.001962,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.684821,
+    "se": 0.003081,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.616174,
+    "se": 0.002982,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.580304,
+    "se": 0.00433,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.609084,
+    "se": 0.010049,
+    "defined": 446,
+    "of": 1000
+   },
+   "undef_km": 0.554
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 5,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.71047,
+    "se": 0.000846,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 2.054883,
+    "se": 0.002382,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.954447,
+    "se": 0.003431,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.863074,
+    "se": 0.003499,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.801784,
+    "se": 0.004648,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.965458,
+    "se": 0.012117,
+    "defined": 907,
+    "of": 1000
+   },
+   "undef_km": 0.093
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 6,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.652347,
+    "se": 0.000871,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 2.334163,
+    "se": 0.002778,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 2.19608,
+    "se": 0.00364,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 2.07259,
+    "se": 0.003905,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.989189,
+    "se": 0.004808,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 4.018776,
+    "se": 0.011736,
+    "defined": 998,
+    "of": 1000
+   },
+   "undef_km": 0.002
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 8,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.556403,
+    "se": 0.000943,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 2.798581,
+    "se": 0.003476,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 2.603846,
+    "se": 0.004021,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 2.392706,
+    "se": 0.004565,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 2.29928,
+    "se": 0.005341,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.999659,
+    "se": 0.010429,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 12,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.424427,
+    "se": 0.000943,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 3.463856,
+    "se": 0.004655,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 3.21642,
+    "se": 0.004874,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 2.800198,
+    "se": 0.005509,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 2.71827,
+    "se": 0.005842,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.996916,
+    "se": 0.009516,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.19556,
+    "se": 0.000737,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 4.730943,
+    "se": 0.00788,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 4.528759,
+    "se": 0.007888,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 3.427401,
+    "se": 0.006993,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 3.412176,
+    "se": 0.007289,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.996129,
+    "se": 0.008659,
+    "defined": 1000,
+    "of": 1000
+   },
+   "undef_km": 0.0
+  }
+ ],
+ "defined_n": [
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 4,
+   "n": 100,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.77538,
+    "se": 0.001329,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 1.744092,
+    "se": 0.003407,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.688042,
+    "se": 0.005499,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.613741,
+    "se": 0.005267,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.577821,
+    "se": 0.007523,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.39722,
+    "se": 0.014312,
+    "defined": 422,
+    "of": 1000
+   },
+   "undef_km": 0.578
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 4,
+   "n": 300,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.77555,
+    "se": 0.000771,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 1.736784,
+    "se": 0.001962,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.684821,
+    "se": 0.003081,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.616174,
+    "se": 0.002982,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.580304,
+    "se": 0.00433,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.609084,
+    "se": 0.010049,
+    "defined": 446,
+    "of": 1000
+   },
+   "undef_km": 0.554
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 4,
+   "n": 1000,
+   "base": 2000,
+   "runs": 1000,
+   "censored": {
+    "mean": 0.776029,
+    "se": 0.000426,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_all": {
+    "mean": 1.738928,
+    "se": 0.001033,
+    "defined": 1000,
+    "of": 1000
+   },
+   "mean_events": {
+    "mean": 1.684687,
+    "se": 0.001694,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_all": {
+    "mean": 1.621423,
+    "se": 0.001573,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_events": {
+    "mean": 1.588857,
+    "se": 0.002344,
+    "defined": 1000,
+    "of": 1000
+   },
+   "median_km": {
+    "mean": 3.763496,
+    "se": 0.006171,
+    "defined": 450,
+    "of": 1000
+   },
+   "undef_km": 0.55
+  }
+ ],
+ "coverage": [
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 100,
+   "base": 5000,
+   "runs": 1000,
+   "rows": [
+    {
+     "t": 2,
+     "true_s": 0.779399,
+     "loglog": 95.0,
+     "loglog_undef": 0,
+     "plain": 94.0,
+     "plain_undef": 0
+    },
+    {
+     "t": 4,
+     "true_s": 0.5,
+     "loglog": 94.1,
+     "loglog_undef": 0,
+     "plain": 93.2,
+     "plain_undef": 0
+    },
+    {
+     "t": 8,
+     "true_s": 0.220601,
+     "loglog": 93.6,
+     "loglog_undef": 0,
+     "plain": 92.4,
+     "plain_undef": 0
+    },
+    {
+     "t": 12,
+     "true_s": 0.111104,
+     "loglog": 94.2,
+     "loglog_undef": 2,
+     "plain": 90.1,
+     "plain_undef": 2
+    }
+   ]
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 30,
+   "n": 300,
+   "base": 5000,
+   "runs": 1000,
+   "rows": [
+    {
+     "t": 2,
+     "true_s": 0.779399,
+     "loglog": 95.5,
+     "loglog_undef": 0,
+     "plain": 94.9,
+     "plain_undef": 0
+    },
+    {
+     "t": 4,
+     "true_s": 0.5,
+     "loglog": 94.6,
+     "loglog_undef": 0,
+     "plain": 94.3,
+     "plain_undef": 0
+    },
+    {
+     "t": 8,
+     "true_s": 0.220601,
+     "loglog": 94.9,
+     "loglog_undef": 0,
+     "plain": 94.3,
+     "plain_undef": 0
+    },
+    {
+     "t": 12,
+     "true_s": 0.111104,
+     "loglog": 95.9,
+     "loglog_undef": 0,
+     "plain": 95.2,
+     "plain_undef": 0
+    }
+   ]
+  },
+  {
+   "kind": "Beobachtungsfenster (Ankunft zufällig)",
+   "length": 8,
+   "n": 300,
+   "base": 5000,
+   "runs": 1000,
+   "rows": [
+    {
+     "t": 2,
+     "true_s": 0.779399,
+     "loglog": 95.5,
+     "loglog_undef": 0,
+     "plain": 94.3,
+     "plain_undef": 0
+    },
+    {
+     "t": 4,
+     "true_s": 0.5,
+     "loglog": 94.2,
+     "loglog_undef": 0,
+     "plain": 94.3,
+     "plain_undef": 0
+    },
+    {
+     "t": 6,
+     "true_s": 0.326169,
+     "loglog": 94.9,
+     "loglog_undef": 0,
+     "plain": 94.7,
+     "plain_undef": 0
+    }
+   ]
+  }
+ ],
+ "rmst": [
+  {
+   "length": 8,
+   "tau": 6,
+   "n": 300,
+   "base": 6000,
+   "runs": 1000,
+   "true": 3.915352,
+   "km": {
+    "mean": 3.92364,
+    "se": 0.004037,
+    "defined": 1000,
+    "of": 1000
+   },
+   "naive_min_obs": {
+    "mean": 2.734668,
+    "se": 0.00318,
+    "defined": 1000,
+    "of": 1000
+   }
+  },
+  {
+   "length": 30,
+   "tau": 12,
+   "n": 300,
+   "base": 6000,
+   "runs": 1000,
+   "true": 5.086139,
+   "km": {
+    "mean": 5.099345,
+    "se": 0.007002,
+    "defined": 1000,
+    "of": 1000
+   },
+   "naive_min_obs": {
+    "mean": 4.449898,
+    "se": 0.006069,
+    "defined": 1000,
+    "of": 1000
+   }
+  }
+ ]
+}
