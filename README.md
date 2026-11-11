@@ -1,7 +1,6 @@
 # Kaplan–Meier: zensierte Zeiten lesen – Streamlit-Demo
 
-<!-- Live-Link nach dem Deploy direkt hierher setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-kaplan-meier-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-kaplan-meier-demo.streamlit.app/)**
 
 Wurzel der Reihe **Überlebenszeit** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Interaktive Demo zu einer Frage, die jede Beobachtung von Zeiten bis zu einem Ereignis stellt:
 **Was fängt man mit Fällen an, die bei Ende der Beobachtung noch laufen?** Vehikel ist die **Containerverweilzeit** der [verweilzeit-demo](https://github.com/sebastian-hanisch/verweilzeit-demo) (lognormal, Median 4 Tage, σ = 0,9; dort ohne Zensierung):
@@ -19,18 +18,18 @@ Eine Verweilzeit, die beim Ende der Beobachtung noch läuft, ist keine kurze Ver
 Gemessen in der erfundenen Welt (Beobachtungsfenster von 30 Tagen, n = 300, 19,6 % zensiert, 1000 Läufe): Das Mittel aller beobachteten Zeiten liegt bei 4,73 ± 0,01 Tagen gegen das wahre Mittel 6,00 (−21,1 % gegen die Wahrheit), der Median von Kaplan–Meier bei 4,00 ± 0,01 gegen den wahren Median 4,00.
 Bei einem Fenster von 8 Tagen (55,6 % zensiert) sinkt das Mittel auf 2,80 (−53,3 %), der Median von Kaplan–Meier bleibt bei 4,00. **Grenze:** Bei einem Fenster von 4 Tagen (= wahrer Median, n = 300, 77,6 % zensiert) hat Kaplan–Meier in 55,4 % der Läufe keinen Median, weil die Kurve in diesen Läufen 0,5 nicht erreicht.
 
-## Befunde und Korrekturen gegenüber dem Plan
+## Befunde und Korrekturen gegenüber der ersten Messung
 
-Der Einzelplan (Phase 0, Vormessung mit numpy-Zufall) hat sich beim Bau an acht Stellen geändert:
+Vormessung = eine erste, schnelle Messung vor dem Bau der Demo, mit dem Zufallsgenerator von NumPy und 200 Läufen. Gegenüber ihr und der ursprünglichen Erwartung hat sich beim Bau an acht Stellen etwas geändert:
 
-1. **Statt vier Wegen gibt es drei.** Der Plan nennt „Mittel aller“, „nur Ereignisse“, „Zensierte als Ereignis“ und Kaplan–Meier. „Mittel aller beobachteten Zeiten“ und „Zensierte als Ereignis“ sind derselbe Weg: Wer jede beobachtete Zeit als Abholung zu diesem Zeitpunkt liest, hat die Kurve 1 − empirische Verteilungsfunktion, deren Mittel das Mittel aller Zeiten ist und deren Median der untere Median aller Zeiten (kleinste Zeit mit Ŝ ≤ 0,5; bei geradem n etwas tiefer als der übliche Median, bei n = 300 um rund 0,015 Tage nach einer Prüfrechnung) (`tests/test_algorithm.py`, `tests/test_oracle_kaplan_meier.py`).
+1. **Statt vier Wegen gibt es drei.** Die ursprüngliche Erwartung nannte „Mittel aller“, „nur Ereignisse“, „Zensierte als Ereignis“ und Kaplan–Meier. „Mittel aller beobachteten Zeiten“ und „Zensierte als Ereignis“ sind derselbe Weg: Wer jede beobachtete Zeit als Abholung zu diesem Zeitpunkt liest, hat die Kurve 1 − empirische Verteilungsfunktion, deren Mittel das Mittel aller Zeiten ist und deren Median der untere Median aller Zeiten (kleinste Zeit mit Ŝ ≤ 0,5; bei geradem n etwas tiefer als der übliche Median; bei einer unzensierten Stichprobe mit n = 300 um rund 0,015 Tage nach einer Prüfrechnung) (`tests/test_algorithm.py`, `tests/test_oracle_kaplan_meier.py`).
 2. **Median gegen Median.** Die Vormessung verglich das Mittel (Wahrheit 6,00) mit dem Kaplan–Meier-Median (Wahrheit 4,00). Die Demo stellt zusätzlich die Mediane der naiven Wege daneben: 3,43 ± 0,01 („Zensierte als Ereignis“) und 3,41 ± 0,01 („nur Ereignisse“) bei Fenster 30 Tage, n = 300 (−14,3 % und −14,7 % gegen den wahren Median).
-3. **Eigene Zahlen, 1000 statt 200 Läufe.** Kern und Zufall (SplitMix64) sind neu; die Zahlen weichen zufallsbedingt von der Vormessung ab (`vormessung/out_uz_v1_bis_v8.txt`: Mittel 4,76, Kaplan–Meier-Median 4,03, bei Fenster 4 Tage 54 % ohne Median; hier 4,73, 4,00 und 55,4 %). Es gelten die Zahlen dieser README (`tools/messung_kaplan_meier.json`).
-4. **„Median nur in 46 % der Läufe definiert“ hängt an der Fensterlänge; bei Fenster = wahrer Median (4 Tage) steigt der Anteil mit n kaum.** Fenster 4 Tage: 42,2 % (n = 100), 44,6 % (n = 300), 45,0 % (n = 1000) der Läufe mit Median (Binomial-Standardfehler je Wert rund 1,6 Prozentpunkte): kein Hinweis, dass mehr Container den Median bei diesem Fenster schätzbar machen. Liegt das Fenster über dem wahren Median (5 Tage), wächst der Anteil nach einer Prüfrechnung mit n gegen 100 % (65 % bei n = 50, 79 % bei n = 100, 94 % bei n = 300, 100 % bei n = 1000), liegt es darunter (3 Tage), fällt er mit n gegen 0. Der Mittelwert der Mediane der Läufe, in denen es einen gibt, steigt dagegen mit n (3,40, 3,61, 3,76): Er gilt nur für diese Läufe und ist kein Schätzwert für den Median.
-5. **Greenwood-Band: gemessene Überdeckung 93,6 bis 95,9 % (log-log) und 90,1 bis 95,2 % (einfach)** über elf Zellen mit je 1000 Läufen. Der Plan nennt 93 bis 97 % und für den einfachen Streifen bei n = 100, t = 12 den Ausreißer 90,0 %; er bleibt (hier 90,1 %, zwei der 1000 Läufe haben dort kein Band). „Nominal 95 %“ steht ohne die Spanne des Plans.
+3. **Eigene Zahlen, 1000 statt 200 Läufe.** Kern und Zufall (SplitMix64) sind neu; die Zahlen weichen zufallsbedingt von der Vormessung ab (Vormessung: Mittel 4,76, Kaplan–Meier-Median 4,03, bei Fenster 4 Tage 54 % ohne Median; hier 4,73, 4,00 und 55,4 %). Es gelten die Zahlen dieser README (`tools/messung_kaplan_meier.json`).
+4. **„Median nur in 46 % der Läufe definiert“ hängt an der Fensterlänge; bei Fenster = wahrer Median (4 Tage) steigt der Anteil mit n kaum.** Fenster 4 Tage: 42,2 % (n = 100), 44,6 % (n = 300), 45,0 % (n = 1000) der Läufe mit Median (Binomial-Standardfehler je Wert rund 1,6 Prozentpunkte): kein Hinweis, dass mehr Container den Median bei diesem Fenster schätzbar machen. Liegt das Fenster über dem wahren Median (5 Tage), wächst der Anteil nach einer Prüfrechnung mit n gegen 100 % (65 % bei n = 50, 79 % bei n = 100, 90,7 % bei n = 300, siehe Tabelle unten; bei n = 1000 fast alle Läufe), liegt es darunter (3 Tage), fällt er nach einer Prüfrechnung mit n gegen 0. Der Mittelwert der Mediane der Läufe, in denen es einen gibt, steigt dagegen mit n (3,40, 3,61, 3,76): Er gilt nur für diese Läufe und ist kein Schätzwert für den Median.
+5. **Greenwood-Band: gemessene Überdeckung 93,6 bis 95,9 % (log-log) und 90,1 bis 95,2 % (einfach)** über elf Zellen mit je 1000 Läufen. Die ursprüngliche Erwartung nannte 93 bis 97 % und für den einfachen Streifen bei n = 100, t = 12 den Ausreißer 90,0 %; er bleibt (hier 90,1 %, zwei der 1000 Läufe haben dort kein Band). „Nominal 95 %“ steht ohne die Spanne der ursprünglichen Erwartung.
 6. **Die Eigenschaft „eine Zensierung hinter dem letzten Ereignis ändert die Kurve nicht“ gilt nur für die Stufenzeiten.** Der Zensierte bleibt in jeder Risikomenge: Jeder Faktor wird (n + 1 − d)/(n + 1), die Werte der Kurve steigen (`tests/test_eigenschaften_kaplan_meier.py`).
-7. **Typ II (Stopp nach r Abholungen) ist nicht umgesetzt.** Die Demo zeigt Beobachtungsfenster und feste Frist (Typ I).
-8. **Orakel ohne Sub-Agent.** Das Orakel ist ein unabhängig geschriebenes Umverteilungsverfahren in Brüchen, kein vom Plan vorgesehener fremder Rechenweg eines Sub-Agenten; der Fremdvergleich mit `lifelines` fehlt (nicht im Test-venv).
+7. **Typ II (Stopp nach r Abholungen) ist nicht umgesetzt.** Die Demo zeigt Beobachtungsfenster und feste Frist (beide Typ I).
+8. **Orakel ohne fremdes Paket.** Das Orakel ist ein unabhängig geschriebenes Umverteilungsverfahren in Brüchen; ein Vergleich mit einem fremden Paket (`lifelines`) fehlt (nicht installiert im Test-Umfeld).
 
 Zusatzbefund: Bei der **festen Frist** ist der Median von „Zensierte als Ereignis“ richtig, solange die Frist über dem wahren Median liegt (3,99 ± 0,01 bei Frist 30 und 8 Tage, wahr 4,00; untere Median-Konvention, beide Fristen nutzen dieselben Zufalls-Seeds und sind keine zwei unabhängigen Bestätigungen), das Mittel nicht (5,83 und 4,45, wahr 6,00). Grund (Rechnung, keine Messung): Mehr als die Hälfte der Container wird vor der Frist abgeholt, der Median von min(D, Frist) ist dann der Median von D.
 
@@ -76,7 +75,7 @@ Die App rechnet zusätzlich live über 30 feste Zufalls-Seeds (7000 bis 7029) f�
 - **Bänder punktweise**, nicht als Streifen über die ganze Kurve; Überdeckung nur an den elf Zellen der Tabelle gemessen. Der einfache Streifen liegt bei n = 100 und t = 12 bei 90,1 %, das log-log-Band dort bei 94,2 %.
 - **Eigener Kern:** Kaplan–Meier ist selbst geschrieben und gegen ein Umverteilungsverfahren in Brüchen, eine Bruchrechnung des Greenwood-Terms, einen Bootstrap und `scipy` für die Wahrheit geprüft; ein Fremdvergleich mit `lifelines` oder `statsmodels` fehlt.
 - **Quellen nicht eingesehen:** Kaplan und Meier (1958) und Klein/Moeschberger (Survival Analysis) stehen nur als Hinweis (aus dem Gedächtnis bzw. Suchtreffer); kein Wert der Demo stammt aus ihnen.
-- **Kaplan–Meier hat in der Regel kein Mittel der Verweilzeit:** Ist die größte beobachtete Zeit zensiert, endet die Kurve oberhalb von null (nach einer Prüfrechnung bei n = 300 und Fenster 30 Tage in rund 71 % der Läufe, bei Fenster 8 und 4 Tagen in mehr als 97 %); die App meldet das Mittel immer als „nicht definiert“. Die mittlere Lebenszeit bis τ ist ein anderes Maß.
+- **Kaplan–Meier hat bei kurzem Beobachtungsfenster meist kein Mittel der Verweilzeit:** Ist die größte beobachtete Zeit zensiert, endet die Kurve oberhalb von null (nach einer Prüfrechnung bei n = 300 und Fenster 30 Tage in rund 71 % der Läufe, bei Fenster 8 und 4 Tagen in mehr als 97 %). Dass die App das Mittel **immer** als „nicht definiert“ meldet, ist eine Festlegung der App (`kpm_algorithm.way_km`), kein Rechenergebnis. Die mittlere Lebenszeit bis τ ist ein anderes Maß.
 - **Darstellung:** Die Diagramme sind im Browser angesehen (hell, Breite 1280), nicht auf Telefon und nicht im dunklen Design; Mausklicks in den Diagrammen lösen nichts aus.
 
 ## Tests
@@ -100,7 +99,7 @@ Die App rechnet zusätzlich live über 30 feste Zufalls-Seeds (7000 bis 7029) f�
 | `app.py` | Streamlit-App (Gerüst nach DEMO-PLAYBOOK §2) |
 | `kpm_algorithm.py` | die drei Wege (Zensierte als Ereignis, nur Ereignisse, Kaplan–Meier) und mittlere Lebenszeit mit Status |
 | `kpm_constants.py` | Regler-Grenzen, Welt, Farben, Presets, feste Zufalls-Seeds |
-| `kpm_core.py` | Kern (Kopie aus ueberlebenszeit-planung/kern/uz_core.py, Stand 2026-11-10, gekürzt): Kaplan–Meier, Greenwood-Band, mittlere Lebenszeit, SplitMix64 |
+| `kpm_core.py` | Kopie des gemeinsamen Kerns `uz_core.py` der Überlebenszeit-Linie (Stand 2026-11-10, gekürzt): Kaplan–Meier, Greenwood-Band, mittlere Lebenszeit, SplitMix64 |
 | `kpm_evaluation.py` | Analyse, Läufe über feste Zufalls-Seeds, Handrechnung in Brüchen, Verdikte als reine Funktionen |
 | `kpm_layout.py` | Fester Kopf (Stylesheet) |
 | `kpm_pdf_export.py` | PDF-Zusammenfassung (fpdf2, erst nach Klick) |
@@ -146,4 +145,4 @@ Gebaut mit Streamlit, Plotly, NumPy und fpdf2.
 
 ---
 
-Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html).
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Überlebenszeit: zensierte Zeiten lesen](https://sebastianhanisch.net/konzepte-ueberlebenszeit.html).

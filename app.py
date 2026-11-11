@@ -61,6 +61,21 @@ Weiter unten: vier **🔬 Experimente** (von Hand, viele Stichproben, Greenwood-
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/kaplan-meier-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Die Demo zeigt, wie man Verweilzeiten liest, wenn die Beobachtung endet, bevor alle Container abgeholt sind. Wer am Stichtag noch steht, ist nicht kurz geblieben: Man weiß nur, dass er mindestens so lange da war.
+
+Zwei naheliegende Rechnungen schätzen die Verweilzeit zu kurz: das **Mittel aller beobachteten Zeiten**, das jeden noch stehenden Container als abgeholt behandelt, und die Rechnung **nur mit den Abgeholten**, die gerade die langen Fälle weglässt. **Kaplan–Meier** zählt jeden Container, solange er beobachtet wird, und liest daraus eine Kurve: den Anteil, der nach einer bestimmten Zeit noch da ist.
+
+Das setzt voraus, dass das Ende der Beobachtung nichts über den Container verrät, was das Verfahren nicht prüft. Endet die Beobachtung zu früh, sinkt die Kurve nie auf die Hälfte, und es gibt keinen Median.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/kaplan-meier-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 with st.expander("So funktioniert Kaplan–Meier", expanded=True):
     st.markdown(
         """
@@ -89,7 +104,7 @@ with st.sidebar:
     kind = st.selectbox(
         "Zensierungsart", C.KINDS, key="kind_select",
         help="Beobachtungsfenster: Die Container kommen nacheinander in den ersten W Tagen an, die Beobachtung endet für alle am Tag W; wer spät ankam, wurde nur kurz beobachtet. "
-             "Feste Frist (Typ I): jeder Container wird genau W Tage nach seiner Ankunft beobachtet.",
+             "Feste Frist: jeder Container wird genau W Tage nach seiner Ankunft beobachtet. Beide Arten sind Typ I (das Ende der Beobachtung ist vorab festgelegt, nicht von der Zahl der Abholungen abhängig).",
     )
     window = st.slider("Länge des Fensters bzw. der Frist (Tage)", *bounds("window_slider"), key="window_slider",
                        help="Fenster: Ankünfte gleichverteilt in den ersten W Tagen, Ende am Tag W. Feste Frist: jeder Container wird W Tage beobachtet.")
@@ -188,7 +203,7 @@ for name in A.WAYS:
 st.dataframe(rows_rep, hide_index=True, width="stretch")
 mean_sp = E.spread(rep["ways"][A.WAY_ALL]["mean"])
 st.caption(f"Mittel aller beobachteten Zeiten: {de(mean_sp['median'])} im Median der Läufe ({de(mean_sp['low'])} bis {de(mean_sp['high'])}), wahres Mittel {de(true_mean)}. "
-           "Kaplan–Meier hat in der Regel kein Mittel der Verweilzeit: Ist die größte beobachtete Zeit zensiert, endet die Kurve oberhalb von null; die App meldet das Mittel immer als nicht definiert (Experiment 4: mittlere Lebenszeit bis τ).")
+           "Bei kurzem Beobachtungsfenster hat Kaplan–Meier meist kein Mittel der Verweilzeit: Ist die größte beobachtete Zeit zensiert, endet die Kurve oberhalb von null (je kürzer das Fenster, desto öfter). Dass die App das Mittel immer als nicht definiert meldet, ist eine Festlegung der App, kein Rechenergebnis (Experiment 4: mittlere Lebenszeit bis τ).")
 kind_w, text_w = E.verdict_ways(rep, a.true_median, true_mean)
 getattr(st, kind_w)(text_w)
 
@@ -341,6 +356,25 @@ with st.expander("⚠️ Annahmen, Grenzen und bekannte Probleme"):
 st.markdown("---")
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/kaplan-meier-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben ist für jeden von $n$ Containern eine Beobachtungszeit $T_i$ und ein Kennzeichen $\delta_i$ (1: Abholung gesehen, 0: beim Ende noch da). Gesucht ist die Überlebensfunktion $S(t)$, der Anteil, der länger als $t$ Tage bleibt, und daraus der Median.
+
+| Symbol | Bedeutung |
+|---|---|
+| $T_i$, $\delta_i$ | Beobachtungszeit und Kennzeichen (1 = Ereignis, 0 = zensiert) von Container $i$ |
+| $t_1 < \dots < t_m$ | die verschiedenen Zeiten mit mindestens einem Ereignis |
+| $n_j$ | Zahl der Container im Risiko bei $t_j$: $n_j = \#\{i : T_i \ge t_j\}$ |
+| $d_j$ | Zahl der Ereignisse bei $t_j$ |
+| $\hat S(t)$ | Kaplan–Meier-Schätzung von $S(t)$ |
+| $z$ | Normalquantil, $z = 1{,}96$ für das nominale Niveau 95 % |
+| $\tau$ | Obergrenze der mittleren Lebenszeit |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/kaplan-meier-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Lesehilfe.** Gegeben ist für jeden von $n$ Containern eine Beobachtungszeit $T_i$ und ein Kennzeichen $\delta_i$ (1: Abholung gesehen, 0: beim Ende noch da). Gesucht ist die Überlebensfunktion $S(t)$,
@@ -396,5 +430,5 @@ st.markdown("---")
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
     "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
-    "Mehr zu den Demos: [Interaktive Demos](https://sebastianhanisch.net/demos.html)."
+    "Mehr zur Reihe: [Überlebenszeit: zensierte Zeiten lesen](https://sebastianhanisch.net/konzepte-ueberlebenszeit.html)."
 )
